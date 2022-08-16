@@ -1,0 +1,20 @@
+.ck-editor__editable {
+	height: 400px;
+}
+
+.write-container {
+	padding: 0px 150px 0px 150px;
+}
+
+.write_menu {
+	display: flex;
+	justify-content: space-between;
+}
+
+.write_menu > div {
+    margin: 10px 0px 0px 0px;
+}
+
+.write_menu > button {
+    margin: 10px 30px 0px 30px;
+}

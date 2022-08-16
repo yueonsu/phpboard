@@ -1,0 +1,52 @@
+a {color: #7e7e7e; text-decoration: none; outline: none}
+a:hover, a:active {text-decoration: none; color: black;}
+
+.board-container {
+	padding: 0 150px 0 150px;
+}
+
+
+
+table {
+	margin-top: 30px;
+	width: 100%;
+}
+
+table > thead > tr {
+	border-bottom: 3px solid #e5e5e5;
+}
+
+table > tbody > tr:hover {
+	background-color: #e5e5e5;
+	cursor: pointer;
+}
+
+/* .table-body:hover{ */
+	
+/* } */
+
+.menu {
+	display: flex;
+	justify-content : end;
+}
+
+.menu > a, .menu > div {
+	margin : 10px;
+}
+
+
+
+.menu > div:hover {
+	cursor: default;
+}
+
+.hot-board {
+	display: flex;
+	gap: 30px;
+}
+
+.search-container > form {
+	width: 100%;
+    display: flex;
+    justify-content: center;
+}

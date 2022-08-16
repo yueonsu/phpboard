@@ -7,8 +7,9 @@ use libs\Db;
 session_start();
 
 $iboard = $_POST['iboard'];
+// $title = Utils::preventScript($_POST['title']);
 $title = $_POST['title'];
-$content = $_POST['content'];
+$content = Utils::preventScript($_POST['content']);
 $iuser = $_SESSION['iuser'];
 
 $sql = "";
@@ -31,5 +32,7 @@ if($result) {
 		location.replace('./detail.php?iboard=<?php echo $result;?>');
 	</script>
 <?php
+} else {
+    header("Location:./main.php?page=1&error=write");
 }
  ?>

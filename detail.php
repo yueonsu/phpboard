@@ -17,9 +17,10 @@ $bool = mysqli_fetch_assoc(Db::query("SELECT * FROM hit WHERE iboard = $iboard")
 if($c->Decrypt($bool['ip']) != $ip) {
 	$ip = $c->Encrypt($ip);
 	Db::query("INSERT INTO hit (iboard, ip) VALUES ($iboard, '$ip')");
+
 }
 
-$rows = mysqli_fetch_assoc(Db::query("select A.*, B.nm, (select count(*) from `like` where iboard = $iboard) as `like`, (select count(*) from hit where iboard = $iboard) as hit from board A inner join user B on A.iuser = B.iuser where A.iboard = $iboard"));
+$rows = mysqli_fetch_assoc(Db::query("select A.*, B.nm, (select count(*) from `like` where iboard = $iboard AND iuser = $iuser) as `like`, (select count(*) from hit where iboard = $iboard) as hit from board A inner join user B on A.iuser = B.iuser where A.iboard = $iboard"));
 
 ?>
 <html>
@@ -73,7 +74,7 @@ $rows = mysqli_fetch_assoc(Db::query("select A.*, B.nm, (select count(*) from `l
 								?>
 								<i class="fa-regular fa-heart like"></i>
 								<?php 
-								} else if ($rows['like'] == 1) {?>
+								} else if ($rows['like'] > 0) {?>
 								<i class="fa-solid fa-heart like"></i>
 								<?php 
 								}

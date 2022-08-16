@@ -1,5 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/test/libs/Db.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/test/libs/Utils.php';
+use libs\Utils;
 use libs\Db;
 session_start();
 
@@ -22,7 +24,7 @@ if(!$icmt) {
 $array = array();
 $row = mysqli_fetch_assoc(Db::query("SELECT A.*, B.nm FROM comment A INNER JOIN user B ON A.iuser = B.iuser WHERE A.content = '$content'"));
 
-array_push($array, array('result'=>$result, 'content'=>$row['content'], 'nm'=>$row['nm'], 'rdt'=>$row['rdt'], 'icmt'=>$row['icmt'], 'iuser'=>$row['iuser'], 'secret'=>$row['secret']));
+array_push($array, array('result'=>$result, 'content'=>Utils::replaceNewLine($row['content']), 'nm'=>$row['nm'], 'rdt'=>$row['rdt'], 'icmt'=>$row['icmt'], 'iuser'=>$row['iuser'], 'secret'=>$row['secret']));
 
 
 echo json_encode($array);

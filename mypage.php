@@ -3,7 +3,7 @@ include_once 'libs/Db.php';
 use libs\Db;
 
 $iuser = $_GET['iuser'];
-$row = mysqli_fetch_assoc(Db::query("SELECT A.*, (SELECT COUNT(*) FROM board WHERE iuser = $iuser) AS board, (SELECT count(*) FROM comment WHERE iuser = $iuser) as comment, B.nm, (SELECT count(*) FROM `like` WHERE iuser = $iuser) as `like` FROM board A INNER JOIN user B ON A.iuser = B.iuser WHERE A.iuser = $iuser"));
+$row = mysqli_fetch_assoc(Db::query("SELECT A.*, (SELECT COUNT(*) FROM board WHERE iuser = $iuser) AS board, (SELECT count(*) FROM comment WHERE iuser = $iuser AND reply is null) as comment, B.nm, (SELECT count(*) FROM `like` WHERE iuser = $iuser) as `like` FROM board A INNER JOIN user B ON A.iuser = B.iuser WHERE A.iuser = $iuser"));
 ?>
 <html>
 <head>
@@ -36,15 +36,15 @@ $row = mysqli_fetch_assoc(Db::query("SELECT A.*, (SELECT COUNT(*) FROM board WHE
 				</div>
 				<div class="my-history">
 					<div class="comment">
-						<div><strong><?php echo $row['comment']?></strong></div>
+						<div><a href="./history.php?category=1&iuser=<?php echo $iuser;?>"><strong><?php echo $row['comment']?></strong></a></div>
 						<div><span>댓글</span></div>
 					</div>
 					<div class="write">
-						<div><strong><?php echo $row['board']?></strong></div>
+						<div><a href="./history.php?category=2&iuser=<?php echo $iuser?>"><strong><?php echo $row['board']?></strong></a></div>
 						<div><span>내가 쓴 글</span></div>
 					</div>
 					<div class="like">
-						<div><strong><?php echo $row['like']?></strong></div>
+						<div><a href="./history.php?category=3&iuser=<?php echo $iuser?>"><strong><?php echo $row['like']?></strong></a></div>
 						<div><span>좋아요</span></div>
 					</div>
 				</div>

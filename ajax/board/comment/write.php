@@ -1,10 +1,12 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/test/libs/Db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/test/libs/Utils.php";
+use libs\Utils;
 use libs\Db;
 	
 $iuser = $_POST['iuser'];
 $iboard = $_POST['iboard'];
-$content = $_POST['content'];
+$content = Utils::write($_POST['content']);
 $secret = $_POST['secret'] == 1 ? 1 : 0;
 
 
@@ -17,5 +19,5 @@ if(mb_strlen($content) < 100) {
 	Db::query("INSERT INTO comment (iuser, iboard, content, secret) VALUES ($iuser, $iboard, '$content', $secret)");
 }
 
-header("Location:/test/detail.php?iboard=$iboard");
+header("Location:/test/board/detail.php?iboard=$iboard");
 ?>

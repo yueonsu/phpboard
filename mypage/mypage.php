@@ -1,5 +1,5 @@
 <?php 
-include_once 'libs/Db.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/test/libs/Db.php';
 use libs\Db;
 
 $iuser = $_GET['iuser'];
@@ -12,17 +12,26 @@ $row = mysqli_fetch_assoc(Db::query("SELECT A.*, (SELECT COUNT(*) FROM board WHE
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/185cb4ce4e.js" crossorigin="anonymous"></script>
 
-	<link rel="stylesheet" href="./static/css/mypage.css?ver=3">
-	<script defer src="./static/js/mypage.js?ver=1"></script>
+	<link rel="stylesheet" href="../static/css/mypage.css?ver=5">
+	<script defer src="../static/js/mypage.js?ver=2"></script>
 	<title>마이페이지</title>
 </head>
 <body>
-	<div class="mypage-container">
+    <div class="authentication">
+        <div>
+            <input type="password" class="form-control auth-password" placeholder="Password" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <strong class="auth-msg dis-none">비밀번호가 일치하지 않습니다.</strong>
+            <button class="btn btn-outline-secondary auth-password-btn" type="button" id="button-addon2">입력</button>
+        </div>
+    </div>
+
+	<div class="mypage-container dis-none">
 		<div class="mypage-header">
 			<div>
 				<div>
-					<a href="./main.php"><button class="btn btn-secondary">메인</button></a>
+					<a href="/test/board/main.php"><button class="btn btn-secondary">메인</button></a>
 				</div>
 				<div>
 					<strong><?php echo $row['nm']?></strong>
@@ -36,19 +45,20 @@ $row = mysqli_fetch_assoc(Db::query("SELECT A.*, (SELECT COUNT(*) FROM board WHE
 				</div>
 				<div class="my-history">
 					<div class="comment">
-						<div><a href="./history.php?category=1&iuser=<?php echo $iuser;?>"><strong><?php echo $row['comment']?></strong></a></div>
+						<div><strong><?php echo $row['comment']?></strong></div>
 						<div><span>댓글</span></div>
 					</div>
 					<div class="write">
-						<div><a href="./history.php?category=2&iuser=<?php echo $iuser?>"><strong><?php echo $row['board']?></strong></a></div>
+						<div><strong><?php echo $row['board']?></strong></div>
 						<div><span>내가 쓴 글</span></div>
 					</div>
 					<div class="like">
-						<div><a href="./history.php?category=3&iuser=<?php echo $iuser?>"><strong><?php echo $row['like']?></strong></a></div>
+						<div><strong><?php echo $row['like']?></strong></div>
 						<div><span>좋아요</span></div>
 					</div>
 				</div>
 			</div>
+
 			<div class="info">
 				<div class="accordion" id="accordionPanelsStayOpenExample">
 				  <div class="accordion-item">

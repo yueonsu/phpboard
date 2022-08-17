@@ -1,5 +1,5 @@
 <?php
-require_once 'libs/Db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/test/libs/Db.php';
 use libs\Db;
 
 $iboard = $_GET['iboard'];

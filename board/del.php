@@ -1,6 +1,6 @@
 <?php
 
-require_once 'libs/Db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/test/libs/Db.php';
 use libs\Db;
 
 session_start();

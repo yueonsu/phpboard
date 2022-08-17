@@ -1,5 +1,38 @@
 const url = new URL(location.href);
 const iuser = url.searchParams.get('iuser');
+
+const authenticationElem = document.querySelector('.authentication');
+if(authenticationElem) {
+	const authPasswordBtn = authenticationElem.querySelector('.auth-password-btn');
+	authPasswordBtn.addEventListener('click', () => {
+		const mypageContainerElem = document.querySelector('.mypage-container');
+
+		const passwordInput = authenticationElem.querySelector('.auth-password');
+		const data = {
+			pw : passwordInput.value
+		}
+
+		fetch('/test/ajax/mypage/checkPassword.php', {
+			method: 'POST',
+			headers: {'Content-Type': "application/json"},
+			body: JSON.stringify(data)
+		})
+			.then(res => res.json())
+			.then(data => {
+				const authMsg = authenticationElem.querySelector('.auth-msg');
+				if(data) {
+					authMsg.classList.add('dis-none');
+					authenticationElem.classList.add('dis-none');
+					mypageContainerElem.classList.remove('dis-none');
+				} else {
+					authMsg.classList.remove('dis-none');
+				}
+			})
+			.catch(e => {
+				console.error(e);
+			});
+	});
+}
 	
 const info = document.querySelector('.info');
 if(info) {
@@ -19,7 +52,7 @@ if(info) {
 			pw : passwordValue,
 			iuser : iuser
 		}
-		fetch(`./ajax/mypage/checkPassword.php`, {
+		fetch(`/test/ajax/mypage/checkPassword.php`, {
 			method : 'post',
 			headers : {'Content-Type' : 'application/json'},
 			body : JSON.stringify(data)
@@ -103,7 +136,7 @@ if(info) {
 				iuser : iuser,
 				pw : changePasswordInput.value
 			}
-			fetch(`./ajax/mypage/changePassword.php`, {
+			fetch(`/test/ajax/mypage/changePassword.php`, {
 				method : 'POST',
 				headers : {"Content-Type" : "application/json"},
 				body : JSON.stringify(data)
@@ -138,7 +171,7 @@ if(changeEmail) {
 		const emailInput = changeEmail.querySelector('.email-input');
 		const email = emailInput.value;
 		console.log(email);
-		fetch(`./ajax/join/emailSend.php?email=${email}`)
+		fetch(`/test/ajax/join/emailSend.php?email=${email}`)
 			.then(res => res.json())
 			.then(data => {
 				const isMsg = document.querySelector('.email-msg');
@@ -167,7 +200,7 @@ if(changeEmail) {
 	certificationBtn.addEventListener('click', () => {
 		const certificationInput = document.querySelector('.certification-input');
 		const certificationNum = certificationInput.value;
-		fetch(`./ajax/join/emailCheck.php?num=${certificationNum}`)
+		fetch(`/test/ajax/join/emailCheck.php?num=${certificationNum}`)
 			.then(res => res.json())
 			.then(data => {
 				if(data == 1) {
@@ -178,7 +211,7 @@ if(changeEmail) {
 						iuser : iuser
 					}
 					
-					fetch(`./ajax/mypage/changeEmail.php`, {
+					fetch(`/test/ajax/mypage/changeEmail.php`, {
 						method: "post",
 						headers : {'Content-Type' : 'application/json'},
 						body : JSON.stringify(emailData)

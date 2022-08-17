@@ -11,8 +11,8 @@
 <body>
 	<?php 
 	
-	require_once 'libs/Db.php';
-	require_once 'libs/Utils.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/test/libs/Db.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/test/libs/Utils.php';
 	use libs\Utils;
 	use libs\Db;
 	
@@ -27,12 +27,12 @@
 			<input type="hidden" name="iboard" value="<?php echo $iboard?>">
 	    	<div class="mb-3">
 			  <label for="exampleFormControlInput1" class="form-label">제목</label>
-			  <input type="text" class="form-control title" name="title" id="title exampleFormControlInput1" value="<?php echo Utils::preventScript($result['title']); ?>">
+			  <input type="text" class="form-control title" name="title" id="title exampleFormControlInput1" value="<?php echo $result['title']; ?>">
 			</div>
 	      	<textarea id="editor" name="content" class="content"><?php echo $result['content'];?></textarea>
 	      	<div class="write_menu">
 	      		<div><button type="submit" class="btn btn-secondary">저장</button></div>
-	      		<div><a class="btn btn-secondary" href="./main.php">메인</a></div>
+	      		<div><a class="btn btn-secondary" href="main.php">메인</a></div>
 	    	</div>
 	    </form>
 	</div>

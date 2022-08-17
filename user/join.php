@@ -4,15 +4,15 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="./static/css/join.css?ver=3">
-	<script defer src="./static/js/join.js?ver=3"></script>
+	<link rel="stylesheet" href="../static/css/join.css?ver=3">
+	<script defer src="../static/js/join.js?ver=3"></script>
 </head>
 <body>
 <div class="join-container">
 	<div>
 		<h2>회원가입</h2>
 	</div>
-	<form method="post" action="./joinProc.php" class="join-frm">
+	<form method="post" action="./user/joinProc.php" class="join-frm">
 		<div>
 			<input name="nm" class="form-control" type="text" placeholder="이름" aria-label="default input example">
 		</div>
@@ -43,7 +43,7 @@
 			</div>
 		</div>
 		<div class="utils">
-			<a href="./main.php"><button class="btn btn-secondary" type="button">메인으로</button></a>
+			<a href="../main.php"><button class="btn btn-secondary" type="button">메인으로</button></a>
 			<button class="join-submit btn btn-secondary">가입</button>
 			<div></div>
 		</div>

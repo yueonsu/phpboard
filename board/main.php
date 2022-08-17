@@ -1,6 +1,8 @@
 <?php
-require_once 'libs/Db.php';
-require_once 'libs/Utils.php';
+// 파일업로드, 마이페이지 배경사진 변경
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/test/libs/Db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/test/libs/Utils.php';
 use libs\Utils;
 use libs\Db;
 session_start();
@@ -14,7 +16,7 @@ session_start();
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 	
 	<link rel="stylesheet" href="/test/static/css/main.css?ver=7">
-	<script defer src="/test/static/js/main.js?ver=5"></script>
+	<script defer src="/test/static/js/main.js?ver=7"></script>
 </head>
 <body>
 	<div class="board-container">
@@ -30,11 +32,11 @@ session_start();
 				</span>
 				<span>님</span>
 			</div>
-			<a href="./mypage.php?iuser=<?php echo $iuser?>">마이페이지</a>
-			<a href="./logout.php"><span>로그아웃</span></a>
+			<a href="/test/mypage/mypage.php?iuser=<?php echo $iuser?>">마이페이지</a>
+			<a href="/test/user/logout.php"><span>로그아웃</span></a>
 			<?php } else {?>
-			<a href="./login.php">로그인</a>
-			<a href="./join.php">회원가입</a>
+			<a href="../user/login.php">로그인</a>
+			<a href="../user/join.php">회원가입</a>
 			<?php } ?>
 		</div>
 		
@@ -97,7 +99,7 @@ session_start();
 					?>
 				    <tr class="table-body" onClick="clickToDetailPage(<?php echo $row['iboard'];?>)">
 				      <th scope="row"><?php echo $row['iboard'];?></th>
-				      <td><?php echo Utils::title(Utils::preventScript($row['title']));?></td>
+				      <td><?php echo Utils::title($row['title']);?></td>
 				      <td><?php echo $row['nm'];?></td>
 				      <td><?php echo $row['rdt'];?></td>
 				      <td><?php echo $row['hit']?></td>
@@ -120,7 +122,7 @@ session_start();
 			</table>
 		</div>
 		<?php if($_SESSION['iuser']) {?>
-		<div class="menu"><a href="./write.php">글쓰기</a></div>
+		<div class="menu"><a href="write.php">글쓰기</a></div>
 		<?php }?>
 		<div class="search-container">
 			<form method="get" action="./main.php">

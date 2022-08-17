@@ -3,7 +3,7 @@
 namespace libs;
 
 class Crypt {
-	function Encrypt($str, $secret_key='secret key', $secret_iv='secret iv')
+	function Encrypt($str, $secret_key, $secret_iv)
 	{
 		$key = hash('sha256', $secret_key);
 		$iv = substr(hash('sha256', $secret_iv), 0, 16)    ;
@@ -12,7 +12,7 @@ class Crypt {
 	}
 	
 	
-	function Decrypt($str, $secret_key='secret key', $secret_iv='secret iv')
+	function Decrypt($str, $secret_key, $secret_iv)
 	{
 		$key = hash('sha256', $secret_key);
 		$iv = substr(hash('sha256', $secret_iv), 0, 16);

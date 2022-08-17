@@ -9,24 +9,23 @@ class Utils {
 	}
 	
 	static function title($str) {
+        $str = str_replace("<", "&lt;", $str);
 		if(mb_strlen($str, "UTF-8") > 20) {
 			$str = mb_substr($str, 0, 20, "UTF-8") . "...";
 		}
-		
+
 		return $str;
 	}
-	
-	static function preventScript($str) {
-		$str = str_replace("\"", "&quot;", 
-			   str_replace("'", "&#039;", 
-			   str_replace(">", "&gt;", 
-			   str_replace("<", "&lt;", $str))));
-		return $str;
-	}
-	
-	static function getHitCount($iboard) {
-		return mysqli_fetch_assoc(Db::query("SELECT COUNT(*) AS hit FROM hit WHERE iboard = $iboard"))['hit'];
-	}
+
+    static function write($str) {
+        return str_replace("'", "&#039;", $str);
+    }
+
+    static function getContent($str) {
+        return str_replace("<", "&lt;", $str);
+    }
+
+
 }
 
 ?>

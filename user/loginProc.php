@@ -1,6 +1,6 @@
 <?php
-require_once 'libs/Crypt.php';
-require_once 'libs/Db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/test/libs/Crypt.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/test/libs/Db.php';
 use libs\Crypt;
 use libs\Db;
 

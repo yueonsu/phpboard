@@ -25,7 +25,7 @@ if(like) {
 		const iboard = document.querySelector('#iboard').dataset.iboard;
 		const iuser= document.querySelector('#iuser').dataset.iuser;
 		
-		fetch(`./like.php?iboard=${iboard}&iuser=${iuser}`)
+		fetch(`/test/ajax/board/like.php?iboard=${iboard}&iuser=${iuser}`)
 			.then(res => res.json())
 			.then(data => {
 				
@@ -81,7 +81,7 @@ if(cmtPagination) {
 	}
 	
 	const commentDel = (icmt, elem) => {
-		fetch(`./ajax/comment/del.php?icmt=${icmt}`)
+		fetch(`/test/ajax/board/comment/del.php?icmt=${icmt}`)
 			.then(res => res.json())
 			.then(data => {
 				if(data == 1) {
@@ -94,7 +94,7 @@ if(cmtPagination) {
 	}
 	
 	const writeReply = (obj, elem) => {
-		fetch('./ajax/comment/reply.php', {
+		fetch('/test/ajax/board/comment/reply.php', {
 			method : 'post',
 			headers : {'Content-Type' : 'application/json'},
 			body : JSON.stringify(obj)
@@ -235,7 +235,7 @@ if(cmtPagination) {
 	const getList = () => {
 		const startIdx = (currentPage - 1) * rowCnt;
 		
-		fetch(`./ajax/comment/getList.php?iboard=${iboard}&startIdx=${startIdx}&rowCnt=${rowCnt}`)
+		fetch(`/test/ajax/board/comment/getList.php?iboard=${iboard}&startIdx=${startIdx}&rowCnt=${rowCnt}`)
 			.then(res => res.json())
 			.then(data => {
 				setList(data.result);
@@ -255,7 +255,7 @@ if(cmtPagination) {
 	}
 	
 	const isReplyCheck = (icmt, div) => {
-		fetch(`./ajax/comment/replyCheck.php?icmt=${icmt}`)
+		fetch(`/test/ajax/board/comment/replyCheck.php?icmt=${icmt}`)
 			.then(res => res.json())
 			.then(data => {
 				if(data.result.length > 0) {
@@ -323,7 +323,7 @@ if(cmtPagination) {
 									iboard : iboard
 								}
 								
-								fetch('./ajax/comment/reply.php', {
+								fetch('/test/ajax/board/comment/reply.php', {
 									method : 'post',
 									headers : {'Content-Type' : 'application/json'},
 									body : JSON.stringify(obj)
@@ -359,7 +359,7 @@ if(cmtPagination) {
 	}
 	
 	const getTotalPage = () => {
-		fetch(`./ajax/comment/totalPage.php?iboard=${iboard}&rowCnt=${rowCnt}`)
+		fetch(`/test/ajax/board/comment/totalPage.php?iboard=${iboard}&rowCnt=${rowCnt}`)
 			.then(res => res.json())
 			.then(data => {
 				makePage(data);

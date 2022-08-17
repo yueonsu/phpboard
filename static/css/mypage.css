@@ -11,6 +11,7 @@
     align-items: end;
 	height: 200px;
 	padding: 10px;
+	justify-content: space-between;
 }
 
 .mypage-header > div {
@@ -18,6 +19,11 @@
     flex-direction: column;
     height: 100%;
     justify-content: space-between;
+}
+
+.mypage-header > div:nth-child(2) {
+	display: flex;
+	flex-direction: column-reverse;
 }
 
 .mypage-body {
@@ -50,7 +56,7 @@
 }
 
 .dis-none {
-	display: none;
+	display: none !important;
 }
 
 .disabled {
@@ -59,4 +65,22 @@
 
 .password {
 	margin-bottom: 30px;
+}
+
+.fa-wrap {
+	color: black;
+}
+
+.authentication {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.authentication > div {
+	width: 300px;
+	height: 200px;
+	text-align: right;
 }

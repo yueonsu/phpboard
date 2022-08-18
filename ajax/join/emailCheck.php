@@ -2,6 +2,10 @@
 session_start();
 $num = $_GET['num'];
 $certification = $_SESSION['num'];
-
-echo json_encode($num == $certification ? true : false);
+$result = false;
+if($certification == $_SESSION['num']) {
+    unset($_SESSION['num']);
+    $result = true;
+}
+echo json_encode($result);
 ?>

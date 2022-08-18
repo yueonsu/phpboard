@@ -11,6 +11,7 @@ $result = $certificationNum == $code ? true : false;
 
 if($result) {
     $result = mysqli_fetch_assoc(Db::query("SELECT id FROM user WHERE email='$email'"))['id'];
+    unset($_SESSION['num']);
 } else {
     $result = false;
 }

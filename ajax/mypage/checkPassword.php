@@ -14,6 +14,7 @@ $pw = $decoded->pw;
 $encodedPw = mysqli_fetch_assoc(Db::query("SELECT * FROM user WHERE iuser = $iuser"))['pw'];
 
 if($pw == $c->Decrypt($encodedPw, "123456789", "#@$%^&*()_+=-")) {
+    $_SESSION['mypage_key'] = true;
 	echo json_encode(true);
 } else {
 	echo json_encode(false);

@@ -27,3 +27,15 @@
 .disabled {
     display: none !important;
 }
+
+.find-id:hover, .find-pw:hover {
+    cursor: pointer;
+}
+
+.msg-wrap {
+    padding: 15px;
+}
+
+.dis-none {
+    display: none;
+}

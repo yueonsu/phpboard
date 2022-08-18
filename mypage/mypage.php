@@ -1,9 +1,20 @@
 <?php 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/test/libs/Db.php';
 use libs\Db;
-
+session_start();
 $iuser = $_GET['iuser'];
+if($iuser == null) {
+    header("Location:/test/user/login.php");
+}
+
 $row = mysqli_fetch_assoc(Db::query("SELECT A.*, (SELECT COUNT(*) FROM board WHERE iuser = $iuser) AS board, (SELECT count(*) FROM comment WHERE iuser = $iuser AND reply is null) as comment, B.nm, (SELECT count(*) FROM `like` WHERE iuser = $iuser) as `like` FROM board A INNER JOIN user B ON A.iuser = B.iuser WHERE A.iuser = $iuser"));
+
+$img = mysqli_fetch_assoc(Db::query("SELECT * FROM photos WHERE iuser = $iuser AND repre = true"));
+$img = $img == null ? "/default.png" : "/" . $iuser . "/" . $img['img'];
+
+$authClass = $_SESSION['mypage_key'] ? "dis-none" : "";
+$mypageClass = $_SESSION['mypage_key'] ? "" : "dis-none";
+
 ?>
 <html>
 <head>
@@ -14,12 +25,12 @@ $row = mysqli_fetch_assoc(Db::query("SELECT A.*, (SELECT COUNT(*) FROM board WHE
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/185cb4ce4e.js" crossorigin="anonymous"></script>
 
-	<link rel="stylesheet" href="../static/css/mypage.css?ver=5">
-	<script defer src="../static/js/mypage.js?ver=2"></script>
+	<link rel="stylesheet" href="../static/css/mypage.css?ver=7">
+	<script defer src="../static/js/mypage.js?ver=6"></script>
 	<title>마이페이지</title>
 </head>
 <body>
-    <div class="authentication">
+    <div class="authentication <?php echo $authClass ?>">
         <div>
             <input type="password" class="form-control auth-password" placeholder="Password" aria-label="Recipient's username" aria-describedby="button-addon2">
             <strong class="auth-msg dis-none">비밀번호가 일치하지 않습니다.</strong>
@@ -27,7 +38,7 @@ $row = mysqli_fetch_assoc(Db::query("SELECT A.*, (SELECT COUNT(*) FROM board WHE
         </div>
     </div>
 
-	<div class="mypage-container dis-none">
+	<div class="mypage-container <?php echo $mypageClass ?>">
 		<div class="mypage-header">
 			<div>
 				<div>
@@ -37,23 +48,33 @@ $row = mysqli_fetch_assoc(Db::query("SELECT A.*, (SELECT COUNT(*) FROM board WHE
 					<strong><?php echo $row['nm']?></strong>
 				</div>
 			</div>
+
+            <div>
+                <a href="./profile.php?iuser=<?php echo $iuser; ?>"><i class="fa-solid fa-gear"></i></a>
+            </div>
+
 		</div>
 		<div class="mypage-body">
+            <div class="my-img">
+                <div class="img-wrap">
+                    <img src="/test/static/img<?php echo $img ?>">
+                </div>
+            </div>
 			<div class="my-history-wrap">
 				<div>
 					<strong>History</strong>
 				</div>
 				<div class="my-history">
 					<div class="comment">
-						<div><strong><?php echo $row['comment']?></strong></div>
+						<div><strong><?php echo $row['comment'] == null ? 0 : $row['comment']?></strong></div>
 						<div><span>댓글</span></div>
 					</div>
 					<div class="write">
-						<div><strong><?php echo $row['board']?></strong></div>
+						<div><strong><?php echo $row['board'] == null ? 0 : $row['board']?></strong></div>
 						<div><span>내가 쓴 글</span></div>
 					</div>
 					<div class="like">
-						<div><strong><?php echo $row['like']?></strong></div>
+						<div><strong><?php echo $row['like'] == null ? 0 : $row['like']?></strong></div>
 						<div><span>좋아요</span></div>
 					</div>
 				</div>

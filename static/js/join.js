@@ -146,7 +146,7 @@ if(joinContainer) {
 	// Email
 	emailCheckBtn.addEventListener('click', () => {
 		const checkNum = document.querySelector('.email-check').value;
-		fetch(`./ajax/join/emailCheck.php?num=${checkNum}`)
+		fetch(`/test/ajax/join/emailCheck.php?num=${checkNum}`)
 			.then(res => res.json())
 			.then(data => {
 				console.log(data);
@@ -166,7 +166,7 @@ if(joinContainer) {
 		const email = document.querySelector('.email');
 		const emailVal = email.value;
 		console.log(emailVal);
-		fetch(`./ajax/join/emailSend.php?email=${emailVal}`)
+		fetch(`/test/ajax/join/emailSend.php?email=${emailVal}`)
 			.then(res => res.json())
 			.then(data => {
 				if(data == 1) {
@@ -194,7 +194,7 @@ if(joinContainer) {
 	
 	// Method
 	const isId = (idVal) => {
-		fetch(`./ajax/join/id.php?id=${idVal}`)
+		fetch(`/test/ajax/join/id.php?id=${idVal}`)
 			.then(res => res.json())
 			.then(data => {
 				const isMsg = document.querySelector('.id-msg');

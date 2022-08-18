@@ -168,8 +168,13 @@ if(changeEmail) {
 	const emailInputWrap = changeEmail.querySelector('.email-input-wrap');
 	const changeEmailInputWrap = changeEmail.querySelector('.change-email-input-wrap');
 	emailSendBtn.addEventListener('click', () => {
+		const emailRegex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		const emailInput = changeEmail.querySelector('.email-input');
 		const email = emailInput.value;
+		if(!emailRegex.test(email)) {
+			alert("이메일을 올바르게 입력해주세요.");
+			return;
+		}
 		console.log(email);
 		fetch(`/test/ajax/join/emailSend.php?email=${email}`)
 			.then(res => res.json())

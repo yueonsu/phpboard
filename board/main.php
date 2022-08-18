@@ -1,5 +1,8 @@
 <?php
-// 파일업로드, 마이페이지 배경사진 변경
+//css
+
+
+
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/test/libs/Db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/test/libs/Utils.php';

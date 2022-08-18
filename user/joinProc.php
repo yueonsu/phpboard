@@ -19,12 +19,12 @@ $result = Db::query("insert into user (id, pw, nm, email) values ('$id', '$pw', 
 if($result) {
 	?>
 <script>
-location.replace('./main.php');
+location.replace('/test/board/main.php');
 </script>
 <?php 
 } else {?>
 <script>
-location.replace('./join.php');
+location.replace('/test/board/join.php');
 </script>
 <?php 
 } ?>

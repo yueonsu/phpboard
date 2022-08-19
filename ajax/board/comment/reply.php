@@ -7,7 +7,7 @@ session_start();
 
 $decoded = json_decode(file_get_contents("php://input"));
 
-$content = Utils::write($decoded->content);
+$content = Utils::write(Utils::replaceNewLine($decoded->content));
 $reply = $decoded->reply;
 $iuser = $_SESSION['iuser'];
 $iboard = $decoded->iboard;

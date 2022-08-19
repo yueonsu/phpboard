@@ -145,6 +145,7 @@ if(cmtPagination) {
 	
 	const makeReplyElem = (obj) => {
 		const div = document.createElement('div');
+
 		div.classList.add('comment-content');
 		div.classList.add('comment-reply');
 		div.innerHTML = `
@@ -188,6 +189,7 @@ if(cmtPagination) {
 	
 	const makeCommentElem = (obj) => {
 		const div = document.createElement('div');
+
 		div.classList.add('comment-content');
 		div.innerHTML = `
 			<div>
@@ -349,6 +351,7 @@ if(cmtPagination) {
 	
 	const replySuccess = (obj, modElem) => {
 		const replyWrite = document.querySelector('.reply-write');
+		obj.content = obj.content.replaceAll("<br/>", "\n");
 		if(modElem) {
 			modElem.innerText = obj.content;
 		} else {

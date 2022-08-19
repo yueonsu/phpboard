@@ -131,6 +131,11 @@ if(info) {
 	
 	const changePasswordBtn = info.querySelector('.change-password-btn');
 	changePasswordBtn.addEventListener('click', () => {
+		const changePasswordCheckInput = info.querySelector('.change-password-check-input').value;
+		if(changePasswordCheckInput != changePasswordInput.value) {
+			alert('비밀번호가 일치하지 않습니다.');
+			return;
+		}
 		if(isPw) {
 			const data = {
 				iuser : iuser,
@@ -175,10 +180,10 @@ if(changeEmail) {
 			alert("이메일을 올바르게 입력해주세요.");
 			return;
 		}
-		console.log(email);
 		fetch(`/test/ajax/join/emailSend.php?email=${email}`)
 			.then(res => res.json())
 			.then(data => {
+				console.log(data);
 				const isMsg = document.querySelector('.email-msg');
 				if(isMsg) {
 					isMsg.remove();

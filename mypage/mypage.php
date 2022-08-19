@@ -26,7 +26,7 @@ $mypageClass = $_SESSION['mypage_key'] ? "" : "dis-none";
     <script src="https://kit.fontawesome.com/185cb4ce4e.js" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" href="../static/css/mypage.css?ver=7">
-	<script defer src="../static/js/mypage.js?ver=6"></script>
+	<script defer src="../static/js/mypage.js?ver=7"></script>
 	<title>마이페이지</title>
 </head>
 <body>

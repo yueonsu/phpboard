@@ -23,6 +23,9 @@ session_start();
 </head>
 <body>
 	<div class="board-container">
+        <div>
+            <a href="/test/board/main.php">메인</a>
+        </div>
 		<div class="menu">
 			
 			<?php if(isset($_SESSION['iuser'])) { ?>
@@ -117,11 +120,8 @@ session_start();
 					} 
 				} else {?>
 				<tr>
-					<td colspan="5" style="text-align: center;" class="no-board">
+					<td colspan="7" style="text-align: center;" class="no-board">
 						<strong>글이 없습니다.</strong>
-					</td>
-					<td colspan="2">
-						<a href="./main.php">돌아가기</a>
 					</td>
 				</tr>
 				<?php }?>

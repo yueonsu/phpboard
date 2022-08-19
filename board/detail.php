@@ -40,7 +40,7 @@ $rows = mysqli_fetch_assoc(Db::query("select A.*, B.nm, (select count(*) from `l
 		<script src="https://kit.fontawesome.com/185cb4ce4e.js" crossorigin="anonymous"></script>
 		
 		<link rel="stylesheet" href="/test/static/css/detail.css?ver=11">
-		<script defer src="/test/static/js/detail.js?ver=60"></script>
+		<script defer src="/test/static/js/detail.js?ver=61"></script>
 	</head>
 	<body>
 		<div id="iboard" data-iboard="<?php echo $_GET['iboard']?>">

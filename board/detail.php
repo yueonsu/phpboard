@@ -19,8 +19,8 @@ $iuser = $_SESSION['iuser'];
 $c = new Crypt();
 
 $bool = mysqli_fetch_assoc(Db::query("SELECT * FROM hit WHERE iboard = $iboard"));
-if($c->Decrypt($bool['ip']) != $ip) {
-	$ip = $c->Encrypt($ip);
+if($c->Decrypt($bool['ip'], "123456789", "#@$%^&*()_+=-") != $ip) {
+	$ip = $c->Encrypt($ip, "123456789", "#@$%^&*()_+=-");
 	Db::query("INSERT INTO hit (iboard, ip) VALUES ($iboard, '$ip')");
 }
 if(!isset($_SESSION['iuser'])) {

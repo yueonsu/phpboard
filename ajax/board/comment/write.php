@@ -7,16 +7,9 @@ use libs\Db;
 $iuser = $_POST['iuser'];
 $iboard = $_POST['iboard'];
 $content = Utils::write($_POST['content']);
-$secret = $_POST['secret'] == 1 ? 1 : 0;
-
-
-echo $iuser . "<br/>";
-echo $iboard . "<br/>";
-echo $content . "<br/>";
-echo $secret;
 
 if(mb_strlen($content) < 100) {
-	Db::query("INSERT INTO comment (iuser, iboard, content, secret) VALUES ($iuser, $iboard, '$content', $secret)");
+	Db::query("INSERT INTO comment (iuser, iboard, content) VALUES ($iuser, $iboard, '$content')");
 }
 
 header("Location:/test/board/detail.php?iboard=$iboard");

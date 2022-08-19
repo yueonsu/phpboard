@@ -71,7 +71,9 @@ session_start();
 				$page = $_GET['page'];
 				$rowCnt = 10;
 				$startIdx = ($page * $rowCnt) - $rowCnt;
-				$result = Db::query("select A.*,(select count(*) from comment where iboard = A.iboard AND reply is null) as comment ,(select count(*) from hit where iboard = A.iboard) as hit, (select count(*) from `like` where iboard = A.iboard) as `like`, B.nm from board A inner join user B on A.iuser = B.iuser order by rdt desc LIMIT $startIdx, $rowCnt");
+				$result = Db::query("select A.*,(select count(*) from comment where iboard = A.iboard AND reply is null) as comment 
+                                 ,(select count(*) from hit where iboard = A.iboard) as hit, (select count(*) from `like` where iboard = A.iboard) as `like`
+                                 , B.nm from board A inner join user B on A.iuser = B.iuser order by rdt desc LIMIT $startIdx, $rowCnt");
 				$totalPage = ceil(mysqli_fetch_assoc(Db::query("SELECT COUNT(*) AS cnt FROM board"))['cnt'] / $rowCnt);
 				
 				$s = $_GET['sel'];
@@ -93,7 +95,9 @@ session_start();
 							$add = "where (content like '%$t%')";
 							break;
 					}
-					$result = Db::query($result = "select A.*,(select count(*) from comment where iboard = A.iboard AND reply is null) as comment ,(select count(*) from hit where iboard = A.iboard) as hit, (select count(*) from `like` where iboard = A.iboard) as `like`, B.nm from board A inner join user B on A.iuser = B.iuser $add order by rdt desc LIMIT $startIdx, $rowCnt");
+					$result = Db::query($result = "select A.*,(select count(*) from comment where iboard = A.iboard AND reply is null) as comment 
+                                     ,(select count(*) from hit where iboard = A.iboard) as hit, (select count(*) from `like` where iboard = A.iboard) as `like`
+                                     , B.nm from board A inner join user B on A.iuser = B.iuser $add order by rdt desc LIMIT $startIdx, $rowCnt");
 					$totalPage = ceil(mysqli_fetch_assoc(Db::query("SELECT COUNT(A.iboard) AS cnt FROM board A INNER JOIN user B ON A.iuser = B.iuser $add"))['cnt'] / $rowCnt);
 				}	
 				

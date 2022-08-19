@@ -3,7 +3,7 @@ session_start();
 $num = $_GET['num'];
 $certification = $_SESSION['num'];
 $result = false;
-if($certification == $_SESSION['num']) {
+if($certification == $num) {
     unset($_SESSION['num']);
     $result = true;
 }

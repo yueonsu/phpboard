@@ -39,3 +39,18 @@
 .dis-none {
     display: none;
 }
+
+.login-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.login-bg {
+    width: 1000px;
+    padding: 150px;
+}
+
+.find-wrap {
+    margin-top: 20px;
+}
